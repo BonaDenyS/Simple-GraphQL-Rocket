@@ -27,7 +27,7 @@ pub struct QueryRoot;
 
 #[Object]
 impl QueryRoot {
-    async fn users(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<UserObject>> {
+    pub async fn users(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<UserObject>> {
         let db = ctx.data::<Database>()?;
         let conn = db.conn.as_ref();
 
@@ -45,7 +45,7 @@ pub struct MutationRoot;
 
 #[Object]
 impl MutationRoot {
-    async fn create_user(
+    pub async fn create_user(
         &self,
         ctx: &Context<'_>,
         name: String,
