@@ -2,9 +2,7 @@ use async_graphql::{EmptySubscription, Schema};
 use async_graphql_rocket::{GraphQLRequest, GraphQLResponse};
 use rocket::State;
 
-pub mod graphql_helper;
-use graphql_helper::{MutationRoot, QueryRoot};
-
+use crate::utils::graphql_helper::{MutationRoot, QueryRoot};
 type MySchema = Schema<QueryRoot, MutationRoot, EmptySubscription>;
 
 #[get("/")]

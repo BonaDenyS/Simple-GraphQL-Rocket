@@ -8,10 +8,11 @@ use std::env;
 mod db;
 mod entities;
 mod routes;
+mod utils;
 
 use db::Database;
-use routes::{MutationRoot, QueryRoot};
 use routes::{graphql_handler, home_page, playground};
+use utils::graphql_helper::{MutationRoot, QueryRoot};
 
 #[launch]
 async fn rocket() -> _ {

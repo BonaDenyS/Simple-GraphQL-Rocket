@@ -38,6 +38,18 @@ impl QueryRoot {
 
         Ok(users.into_iter().map(UserObject::from).collect())
     }
+
+    pub async fn user(&self, ctx: &Context<'_>, id: i32) -> async_graphql::Result<Vec<UserObject>> {
+        let db = ctx.data::<Database>()?;
+        let conn = db.conn.as_ref();
+
+        let users = UserEntity::find_by_id(id)
+            .order_by_asc(crate::entities::user::Column::Id)
+            .all(conn)
+            .await?;
+
+        Ok(users.into_iter().map(UserObject::from).collect())
+    }
 }
 
 #[derive(Default)]
